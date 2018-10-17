@@ -1,0 +1,106 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct FO
+{
+ int roll;
+ char name[20];
+ float marks;
+}stud;
+//void modify();
+//void del();
+void insert();
+void search();
+void display();
+
+FILE *masters,*temp ;
+char ch;
+stud st;	
+void main()
+{
+    int n,roll;
+    if(!(masters=fopen("masters.txt","r+")))
+    masters=fopen("masters.txt","w+");
+    do{
+printf("\n==============================================\n1.create new file\n2.search\n3.delete data\n4.modify data\n==============================================\nENTER YOUR CHOICE\n");
+scanf("%d",&n);
+  switch(n)
+    {
+	    case 1:insert();
+	                 break;
+	  case 2:search();
+	              break;
+	  case 3://del();
+	               break;
+	  case 4:// modify();
+	               break;
+	   default: printf("\nenter a valid option\n\n");              
+	}
+
+}while(n!=0);
+
+}
+
+void insert()
+{
+int a;
+printf("\nenter no of entries you want to enter:\t");
+scanf("%d",&a);
+fseek(masters,0,2);
+while(a>0)
+{
+printf("\n enter roll,name,marks:\t");
+scanf("%d%s%f",&st.roll,st.name,&st.marks);
+fprintf(masters,"%d\t%s\t%6.2f\n",st.roll,st.name,st.marks);
+a--;
+}
+fclose(masters);
+masters=fopen("masters.txt","r+");
+display();
+}
+
+void display()
+{
+rewind(masters);
+printf("\nROLL\tNAME\tMARKS\n");
+	while(!feof(masters))
+	{
+          fscanf(masters,"%d\t%s\t%f\n",&st.roll,st.name,&st.marks);
+		printf("%d\t%s\t%6.2f\n",st.roll,st.name,st.marks);
+	}
+	
+}
+
+void search()
+{
+int roll;
+printf("\nenter roll for searching:\t");
+scanf("%d",&roll);
+rewind(masters);
+while(!feof(masters))
+{
+ fscanf(masters,"%d\t%s\t%f\n",&st.roll,st.name,&st.marks);
+ if(st.roll==roll)
+ {
+ printf("Record found:\n");
+ printf("%d\t%s\t%6.2f\n",st.roll,st.name,st.marks);
+ //return;
+ }
+}
+printf("\nrecord not found\n");
+}
+
+	
+/*void modify()
+{
+
+display();
+}
+
+void del()
+{
+	
+display();
+}
+*/
+
+

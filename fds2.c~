@@ -1,0 +1,130 @@
+#include<stdio.h>
+
+void accept(int [5][5],int ,int );
+void display(int [5][5],int,int);
+void add(int[5][5],int [5][5],int,int,int,int);
+void mul(int[5][5],int [5][5],int,int,int,int);
+void tran(int [5][5],int,int);
+void sp(int [5][5],int,int);
+void main() {
+	int a[5][5],b[5][5],r1,c1,r2,c2,n;
+	do {
+		printf("enter 1 for accepting and display matrix data \nenter 2 for addition of two matrix\nenter 3 for multiplication of two matrix\nenter 4 for transpose of a matrix\nenter 5 for finding saddle point of a matrix\nenter 6 for exit\n\n");
+		scanf("%d",&n);
+		switch(n) {
+			case 1:
+				printf("enter row and col 1st matrix ");
+				scanf("%d%d",&r1,&c1);
+				accept(a,r1,c1);
+				printf("enter row and col 2nd matrix ");
+				scanf("%d%d",&r2,&c2);
+				accept(b,r2,c2);
+				break;
+			case 2:
+				add(a,b,r1,c1,r2,c2);
+				break;
+
+			case 3:
+				mul(a,b,r1,c1,r2,c2);
+				break;
+
+			case 4:
+				tran(a,r1,c1);
+				tran(b,r2,c2);
+				break;
+
+			case 5:
+				sp(a,r1,c1);
+				break;
+				
+			case 6: break;
+
+			default:
+				printf("enter a option between 1 to 5");
+		}
+	} while(n!=6);
+
+}
+void accept(int a[5][5],int r1,int c1) {
+	int i,j;
+	printf("enter data for  matrix:\n\n");
+	for(i=0; i<r1; i++) {
+		for(j=0; j<c1; j++) {
+			scanf("%d",&a[i][j]);
+		}
+	}
+	display(a,r1,c1);
+}
+void display(int d[5][5],int p,int q) {
+	int i,j;
+	printf(" data for matrix\n");
+	for(i=0; i<p; i++) 
+	{printf("\n");
+		for(j=0; j<q; j++) {
+			printf("%d\t",d[i][j]);
+		}
+	}printf("\n\n\n");
+}
+void add(int e[5][5],int f[5][5],int o,int p,int s,int t) {
+	int g[5][5];
+	int i,j;
+	if(o==s&&p==t) 
+	{
+	for(i=0;i<o;i++)
+	{for(j=0;j<p;j++){
+		g[i][j]=e[i][j]+f[i][j];
+		}}
+		printf("\naddition is:\n");
+	  	display(g,o,p);
+	} else
+		printf("enter matrix of same order\n\n\n");
+}
+void mul(int r[5][5],int w[5][5],int k,int l,int u,int v) {
+	int p[5][5],i,j,k1;
+	if(l==u) {
+	for(i=0;i<k;i++)
+	{printf("\t");
+	  for(j=0;j<v;j++)
+	  { p[i][j]=0;
+	   for(k1=0;k1<u;k1++)
+	   {p[i][j]=p[i][j]+r[i][k1]*w[k1][j];
+	     }}}
+	display(p,i,j);
+	} else
+		printf("enter appropriate order for multiplication\n\n\n");
+}
+void tran(int a[5][5],int x1,int y1) 
+{int d[5][5],i,j;
+
+  for(i=0;i<x1;i++)
+   {for(j=0;j<y1;j++)
+     {d[j][i]=a[i][j];	
+		}}
+		printf("\ntranspose is:\n");
+	       display(d,j,i);
+}
+void sp(int a2[5][5],int x2,int y2) {
+        int i2,j2,k,max,min,pos,pos2;
+	int flag=0;
+	for(i2=0;i2<x2;i2++) {
+		min=a2[i2][0];
+		for(j2=0;j2<y2;j2++) {
+			if(min>=a2[i2][j2]) {
+				min=a2[i2][j2];
+				pos=j2;
+			}
+		}max=a2[0][pos];
+		for(k=0;k<x2;k++) {
+			if(max<=a2[i2][pos]) {
+				max=a2[k][pos];
+				pos2=k;
+			}
+		}
+		if(min==max) {
+			printf("\n%d saddle point\n\n\n",min);
+			flag=1;
+		}
+	}
+	if(flag==0)
+		printf("\n%d %d saddle point  doesn't exist\n\n\n",min,max);
+}
