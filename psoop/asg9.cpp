@@ -5,22 +5,22 @@ class pers
 {
  public:
  char name[20];
- int dob,age; 
- 
+ int dob,age;
+
 };
 class prof
 {
  public:
  char office_name;
-  
+
 };
 class acad:public pers,public prof
 {
  public:
  int marks,pass_out;
- char clg_name;
+ char clg_name[20];
  void accept();
- void display();   
+ void display();
 }e3[20];
 void acad::accept()
 {
@@ -31,12 +31,12 @@ void acad::accept()
  cout<<"\nDate of Birth\n";
  cin>>e3[i].dob;
  cout<<"\nname of college\n";
- cin>>e3[i].dob;
+ cin>>e3[i].clg_name;
  cout<<"\nMarks\n";
  cin>>e3[i].marks;
  cout<<"\nPassout year\n";
- cin>>e3[i].marks;
- 
+ cin>>e3[i].pass_out;
+
 }
 void acad::display()
 {
@@ -44,7 +44,7 @@ void acad::display()
  cout<<"\nName"<<"\t"<<"Age"<<"\t"<<"DOB"<<"\t"<<"clg name"<<"\t"<<"Marks"<<"\t"<<"Passout year\n";
  for(i=0;i<n;i++)
  {
- cout<<e3[i].name<<e3[i].age<<e3[i].dob<<e3[i].dob<<e3[i].marks<<e3[i].marks;
+ cout<<e3[i].name<<e3[i].age<<e3[i].dob<<e3[i].clg_name<<e3[i].marks<<e3[i].pass_out;
  }
  }
  int main()
@@ -62,4 +62,4 @@ void acad::display()
           break;
    }
   }while(ch!=3);
- }  
+ }
