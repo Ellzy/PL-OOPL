@@ -7,7 +7,7 @@ class weather_report
   void accept();
   void display();
   weather_report(){
-  day=0;
+day=0;
   ht=43;
   lt=34;
   ra=32;
@@ -16,7 +16,7 @@ class weather_report
   }w[5];
  int i;
  void weather_report::accept()
- {  cout<<"enter day  of month,"<<"enter high temp,"<<"enter low temp,"<<"enter rain amount,"<<"enter snow      amount,";
+ {  cout<<"enter day  of month,"<<"enter high temp,"<<"enter low temp,"<<"enter rain amount,"<<"enter snow amount,";
    for(i=0;i<5;i++)
 { cin>>w[i].day>>w[i].ht>>w[i].lt>>w[i].ra>>w[i].sa;
  }
